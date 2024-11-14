@@ -6,6 +6,8 @@ import { validateCpf } from "./validateCpf";
 const app = express();
 app.use(express.json());
 
+app.get("/ping", async function (req, res) { res.json( { message: "pong" } ) } );
+
 app.post("/signup", async function (req, res) {
 	const input = req.body;
 	const connection = pgp()("postgres://postgres:123456@localhost:5432/app");

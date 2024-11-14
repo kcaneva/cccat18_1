@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "singup": "tsc && node ./dist/singup",
 	"docker:start": "docker compose up -d",
 	"docker:stop": "docker compose stop",
 	"docker:clean": "docker compose rm -fsv"

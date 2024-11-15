@@ -14,8 +14,8 @@ async function controllerSignup(req: any, res: any) {
 	try {
 		validadeInput(input)
 		validateAccountExists(connection, input.email)
-		await connection.query("insert into ccca.account (account_id, name, email, cpf, car_plate, is_passenger, is_driver, password) values ($1, $2, $3, $4, $5, $6, $7, $8)", [id, input.name, input.email, input.cpf, input.carPlate, !!input.isPassenger, !!input.isDriver, input.password]);
 		const id = crypto.randomUUID();
+		await connection.query("insert into ccca.account (account_id, name, email, cpf, car_plate, is_passenger, is_driver, password) values ($1, $2, $3, $4, $5, $6, $7, $8)", [id, input.name, input.email, input.cpf, input.carPlate, !!input.isPassenger, !!input.isDriver, input.password]);
 		res.json({ accountId: id });
 	} catch (e: Error) {
 		res.status(422).json({ message: e.message});
@@ -44,4 +44,8 @@ type Input = {
 	"carPlate": string,
 	"isPassenger": boolean,
 	"password": string,
+}
+
+type Output = {
+	"accountId": string
 }

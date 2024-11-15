@@ -21,7 +21,6 @@ async function createAccount( input: any ) {
 		throw new Error('Erro na resposta da API: ' + response.status + ' ' + response.statusText)
 	}
 	const data = await response.json()
-	console.log(data); 
 	return data;
 }
 

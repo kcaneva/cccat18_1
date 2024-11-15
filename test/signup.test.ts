@@ -1,4 +1,5 @@
 import pgp from "pg-promise";
+import { errorMessages } from "../src/errorMessages";
 
 async function clearAccounts() {
 	const connection = pgp()("postgres://postgres:123456@localhost:5432/app");
@@ -39,7 +40,7 @@ test("Deve criar a conta de Motorista", async function () {
 	}
 
 	const data = await createAccount( input );
-	const output = (data && data.accountId !== undefined); 
+	const output = (data && data.accountId !== undefined);
 
 	expect(output).toBe(true);
 });
@@ -57,9 +58,9 @@ test("Deve retornar que a conta já existe", async function () {
 	}
 
 	const data = await createAccount( input );
-	const output: number = data.message; 
+	const output = data.message; 
 	
-	expect(output).toBe(-4);
+	expect(output).toBe(errorMessages.ACCOUNT_ALREADY_EXISTS);
 });
 
 test("Deve retornar nome inválido", async function () {
@@ -75,9 +76,9 @@ test("Deve retornar nome inválido", async function () {
 	}
 
 	const data = await createAccount( input );
-	const output: number = data.message; 
+	const output = data.message; 
 	
-	expect(output).toBe(-3);
+	expect(output).toBe(errorMessages.INVALID_NAME);
 });
 
 test("Deve retornar email inválido", async function () {
@@ -93,9 +94,9 @@ test("Deve retornar email inválido", async function () {
 	}
 
 	const data = await createAccount( input );
-	const output: number = data.message; 
+	const output = data.message; 
 	
-	expect(output).toBe(-2);
+	expect(output).toBe(errorMessages.INVALID_EMAIL);
 });
 
 test("Deve retornar cpf inválido", async function () {
@@ -111,9 +112,9 @@ test("Deve retornar cpf inválido", async function () {
 	}
 
 	const data = await createAccount( input );
-	const output: number = data.message; 
+	const output = data.message; 
 	
-	expect(output).toBe(-1);
+	expect(output).toBe(errorMessages.INVALID_CPF);
 });
 
 
@@ -130,7 +131,7 @@ test("Deve retornar placa inválida", async function () {
 	}
 
 	const data = await createAccount( input );
-	const output: number = data.message; 
+	const output = data.message; 
 	
-	expect(output).toBe(-5);
+	expect(output).toBe(errorMessages.INVALID_CAR_PLATE);
 });

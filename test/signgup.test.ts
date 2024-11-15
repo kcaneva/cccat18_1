@@ -10,7 +10,6 @@ async function clearAccounts() {
 }; 
 
 async function createAccount( input: any ) {
-
 	const response = await fetch("http://localhost:3000/signup", {
 		method: 'POST',
 		headers: {
@@ -18,7 +17,6 @@ async function createAccount( input: any ) {
 		},
 		body: JSON.stringify( input )
 	} );
-	
 	if (!response.ok && (response.status !== 422)) {
 		throw new Error('Erro na resposta da API: ' + response.status + ' ' + response.statusText)
 	}
@@ -26,7 +24,6 @@ async function createAccount( input: any ) {
 	console.log(data); 
 	return data;
 }
-
 
 test("Deve criar a conta de Motorista", async function () {
 

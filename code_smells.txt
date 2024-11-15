@@ -5,3 +5,4 @@
 5 - tratamento inadequado de erros
 6 - variáveis declaradas longe da utilização
 7 - método longo
+8 - numeros mágicos
